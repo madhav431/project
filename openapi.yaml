@@ -1,0 +1,50 @@
+openapi: "3.0.0"
+
+info:
+  title: Hospital Management Service
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8000/
+
+paths:
+  /users:
+    post:
+      tags:
+        - Users
+      description: To create User account
+      operationId: CreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/schemas/CreateUser"
+      responses:
+        "201":
+          description: Create User
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  message:
+                    type: string
+        "404":
+          description: Failed to create user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  message:
+                    type: string
+          
+schemas:
+  CreateUser:
+    type: object
+    properties:
+      userName:  
+        type: string
+      userEmail: 
+        type: string
+      userPassword:
+        type: string
