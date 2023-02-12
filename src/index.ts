@@ -5,7 +5,7 @@ import swaggerUi from "swagger-ui-express"
 import { apiImpl } from "./impl/types"
 import path from "path"
 import bodyParser from "body-parser"
-import userService from "../dist/index"
+import userService from "./abstract/index"
 dotenv.config({ path: path.resolve(__dirname, "../server.env") })
 const swaggerDocument = YAML.load(path.resolve(__dirname, "../openapi.yaml"))
 let impl = new apiImpl()

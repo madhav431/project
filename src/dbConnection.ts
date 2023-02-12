@@ -1,15 +1,16 @@
 import mysql from "mysql2"
 
-let connection =mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Praveen@8919296298",
-    database:"hms",
-    port: 3306
+let connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Praveen@8919296298",
+  database: "hms",
+  port: 3306,
 })
 
-connection.on("error",()=>{
-    console.log("Failed to connect to db")  
-})
+connection.connect((err) => {
+  if (err) console.log("Error in connecting to database")
 
-export {connection}
+  console.log("Database connected successfully")
+})
+export { connection }

@@ -3,18 +3,17 @@ import {
   CreateUser404Response,
   CreateUserResponse,
   UsersApi,
-} from "../../../dist/api/users/types"
-import { Api } from "../../../dist/models"
+} from "../../abstract/api/users/types"
+import { Api } from "../../abstract/models"
 import { connection } from "../../dbConnection"
 import Utils from "../../utils/utils"
-
-class User implements UsersApi {
+class Users implements UsersApi {
   createUser(
     request: Api.CreateUser | undefined
   ): Promise<CreateUserResponse> {
     return new Promise<CreateUserResponse>(async(resolve, reject) => {
       console.log("request", request)
-      if (request?.userEmail ===""|| request?.userName ==="" || request?.userPassword ==="") {
+      if (request?.email ===""|| request?.name ==="" || request?.password ==="") {
         let res = <CreateUser404Response>{
           status: 404,
           body: {
@@ -23,7 +22,9 @@ class User implements UsersApi {
         }
         return resolve(res)
       }
-      let result =await Utils.checkEmailExists(request?.userEmail)
+      let result =await Utils.checkEmailExists(request?.email)
+      console.log("result",result);
+      
         if(result[0]["COUNT(*)"]>0){
           let res = <CreateUser404Response>{
             status: 404,
@@ -36,22 +37,27 @@ class User implements UsersApi {
       try {
         let id = Math.random().toString(20).substring(2, 20).toUpperCase()
         let token = Utils.generateToken(id,"HMS")
-        let hashedPassword = await Utils.hashPassword(request?.userPassword)
+        let hashedPassword = await Utils.hashPassword(request?.password)
         console.log("hashedPassword-😅",hashedPassword);
         
-        let values = {
+        let values = { 
           id,
-          u_name: request?.userName,
-          u_email: request?.userEmail,
-          u_password: hashedPassword,
-          created_at: new Date()
+          name: request?.name,
+          email: request?.email,
+          password: hashedPassword,
+          gender:request?.gender,
+          mobile: request?.mobile,
+          address: request?.address,
+          age: request?.age,
+          token:token,
+          medical_history: request?.medical_history,
+          createdAt: new Date()
             .toLocaleDateString()
             .split("/")
             .reverse()
             .join("-"),
-          token,
         }
-       connection.query(`INSERT INTO users set ?`, values, (err, result) => {
+       connection.query(`INSERT INTO hms_patients set ?`, values, (err, result) => {
           if (err) throw err
           console.log(result)
           let res = <CreateUser201Response>{
@@ -74,6 +80,7 @@ class User implements UsersApi {
       }
     })
   }
+
 }
 
-export default User
+export default Users

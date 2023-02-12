@@ -31,7 +31,7 @@ class Utils {
   static async checkEmailExists(email: any): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
-        let sql = `SELECT COUNT(*) FROM users WHERE u_email='${email}'`
+        let sql = `SELECT COUNT(*) FROM hms_patients WHERE email='${email}'`
         connection.query(sql, (err, result) => {
           if (err) throw err
           resolve(result)
@@ -41,6 +41,29 @@ class Utils {
         return reject(err)
       }
     })
+  }
+  static async verifyPassword(email: string | any, userPassword: string | any) {
+    return new Promise((resolve, reject) => {
+      let sql = `SELECT password FROM hms_patients WHERE email='${email}'`
+      connection.query(sql, (err, result: any) => {
+        if (err) return console.error(err)
+        return bcrypt
+          .compare(userPassword, result[0].password)
+          .then((result) => {
+            resolve(result)
+          })
+      })
+    })
+  }
+  static async get_user_with_id(id: string|any) {
+    return new Promise((resolve, reject) => {
+      let sql = `SELECT count(*) FROM hms_patients WHERE id='${id}'`
+      connection.query(sql, (err, result) => {
+        if (err) throw err
+        resolve(result)
+      })
+    })
+    
   }
 }
 
