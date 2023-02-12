@@ -1,8 +1,10 @@
-import { UsersApi } from "../../dist/api/users/types";
-import { ApiImplementation } from "../../dist/types";
-import User from "./users/types";
+import { UserApi } from "../abstract/api/user/types";
+import { UsersApi } from "../abstract/api/users/types";
+import { ApiImplementation } from "../abstract/types";
+import User from "./user/types";
+import Users from "./users/types";
 
 export class apiImpl implements ApiImplementation{
-    users: UsersApi = new User
-    
+    user: UserApi = new User
+    users: UsersApi = new Users
 }
