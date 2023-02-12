@@ -7,7 +7,7 @@ servers:
   - url: http://localhost:8000/
 
 paths:
-  /users:
+  /users/patient:
     post:
       tags:
         - Users
@@ -25,7 +25,7 @@ paths:
             application/json:
               schema:
                 type: object
-                properties: 
+                properties:
                   message:
                     type: string
         "404":
@@ -34,17 +34,151 @@ paths:
             application/json:
               schema:
                 type: object
-                properties: 
+                properties:
                   message:
                     type: string
-          
+
+  /users/patient_signin:
+    post:
+      tags:
+        - User
+      description: For SignIn user to the DB
+      operationId: SignIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: SignIn successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  id:
+                    type: string
+
+                  token: 
+                    type: string
+        "404":
+          description: SignIn bad request   
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+        "500":
+          description: Sign Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+
+  /user/patient_profile:
+    get:
+      tags:
+        - User
+      description: Get the patient profile data
+      operationId: GetProfile
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Patient profile data retrival data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  gender:
+                    type: string
+                  mobile:
+                    type: string
+                  address:
+                    type: string
+                  age:
+                    type: number
+                  medical_history:
+                    type: string
+        "404":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+
+  /user/update_patient:
+      put:
+        tags:
+          - User
+        description: Update User data
+        operationId: Updatepatient
+        parameters:
+          - in: query
+            name: id
+            schema:
+              type: string
+        responses:
+          "200":
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          "404":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+      
 schemas:
   CreateUser:
     type: object
     properties:
-      userName:  
+      name:
         type: string
-      userEmail: 
+      email:
         type: string
-      userPassword:
+      password:
+        type: string
+      gender:
+        type: string
+      mobile:
+        type: string
+      address:
+        type: string
+      age:
+        type: number
+      medical_history:
         type: string
