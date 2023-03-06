@@ -13,6 +13,42 @@
  */
 
 export namespace Api {
+	export interface CreateAppointment {
+		patient_id?: string;
+		doctor_id?: string;
+		appointment_date?: string;
+		appointment_time?: string;
+	}
+
+	export interface CreateAppointment201Response {
+		message?: string;
+	}
+
+	export interface CreateAppointment404Response {
+		message?: string;
+	}
+
+	export interface CreateAppointment500Response {
+		message?: string;
+	}
+
+	export interface CreateDoctor {
+		name?: string;
+		email?: string;
+		password?: string;
+		address?: string;
+		mobile?: string;
+		specialization?: string;
+	}
+
+	export interface CreateDoctor201Response {
+		message?: string;
+	}
+
+	export interface CreateDoctor404Response {
+		message?: string;
+	}
+
 	export interface CreateUser {
 		name?: string;
 		email?: string;
@@ -34,6 +70,26 @@ export namespace Api {
 
 	export interface CreateUser404Response {
 		message?: string;
+	}
+
+	export interface DoctorSign200Response {
+		id?: string;
+		email?: string;
+		name?: string;
+		mobile?: string;
+		specialization?: string;
+	}
+
+	export interface DoctorSign404Response {
+		message?: string;
+	}
+
+	export interface DoctorSign500Response {
+	}
+
+	export interface DoctorSignRequest {
+		email?: string;
+		password?: string;
 	}
 
 	export interface GetProfile200Response {
