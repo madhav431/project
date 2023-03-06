@@ -13,11 +13,15 @@
  */
 
 import { Express } from 'express'
+import appointments from './api/appointments'
+import doctor from './api/doctor'
 import user from './api/user'
 import users from './api/users'
 import * as t from './types'
 
 export default function(app: Express, impl: t.ApiImplementation) {
+	appointments(app, impl.appointments)
+	doctor(app, impl.doctor)
 	user(app, impl.user)
 	users(app, impl.users)
 }

@@ -50,6 +50,7 @@ class User implements UserApi {
     })
   }
   updatepatient!: (id: string | undefined) => Promise<UpdatepatientResponse>
+  
   signIn(request: Api.SignInRequest | undefined): Promise<SignInResponse> {
     return new Promise<SignInResponse>(async (resolve, reject) => {
       let result = await Utils.checkEmailExists(request?.email)

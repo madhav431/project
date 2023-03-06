@@ -12,10 +12,14 @@
  * Do not edit the class manually.
  */
 
+import * as appointments from './api/appointments/types'
+import * as doctor from './api/doctor/types'
 import * as user from './api/user/types'
 import * as users from './api/users/types'
 
 export interface ApiImplementation {
+	appointments: appointments.AppointmentsApi
+	doctor: doctor.DoctorApi
 	user: user.UserApi
 	users: users.UsersApi
 }

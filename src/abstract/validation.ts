@@ -302,6 +302,456 @@ export function timeToJson(name: string, value: string): string {
 
 /* Model conversion functions */
 
+const ApiCreateAppointmentKeys: string[] = ['patient_id', 'doctor_id', 'appointment_date', 'appointment_time']
+
+function modelApiCreateAppointmentFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateAppointment {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointmentKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateAppointment = {
+		'patient_id': allowUndefined(stringFromJson)(`${name}.patient_id`, value['patient_id']),
+		'doctor_id': allowUndefined(stringFromJson)(`${name}.doctor_id`, value['doctor_id']),
+		'appointment_date': allowUndefined(stringFromJson)(`${name}.appointment_date`, value['appointment_date']),
+		'appointment_time': allowUndefined(stringFromJson)(`${name}.appointment_time`, value['appointment_time']),
+	}
+
+	return result
+}
+
+function modelApiCreateAppointmentToJsonContent(name: string, value: Api.CreateAppointment, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateAppointment> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointmentKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateAppointment> = {
+		'patient_id': allowUndefined(stringToJson)(`${name}.patient_id`, value['patient_id']),
+		'doctor_id': allowUndefined(stringToJson)(`${name}.doctor_id`, value['doctor_id']),
+		'appointment_date': allowUndefined(stringToJson)(`${name}.appointment_date`, value['appointment_date']),
+		'appointment_time': allowUndefined(stringToJson)(`${name}.appointment_time`, value['appointment_time']),
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointmentFromJson(name: string, value: any): Api.CreateAppointment {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateAppointment = modelApiCreateAppointmentFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointmentToJson(name: string, value: Api.CreateAppointment): ToJson<Api.CreateAppointment> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateAppointment> = modelApiCreateAppointmentToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiCreateAppointment201ResponseKeys: string[] = ['message']
+
+function modelApiCreateAppointment201ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateAppointment201Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointment201ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateAppointment201Response = {
+		'message': allowUndefined(stringFromJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+function modelApiCreateAppointment201ResponseToJsonContent(name: string, value: Api.CreateAppointment201Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateAppointment201Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointment201ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateAppointment201Response> = {
+		'message': allowUndefined(stringToJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointment201ResponseFromJson(name: string, value: any): Api.CreateAppointment201Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateAppointment201Response = modelApiCreateAppointment201ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment201Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointment201ResponseToJson(name: string, value: Api.CreateAppointment201Response): ToJson<Api.CreateAppointment201Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateAppointment201Response> = modelApiCreateAppointment201ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment201Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiCreateAppointment404ResponseKeys: string[] = ['message']
+
+function modelApiCreateAppointment404ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateAppointment404Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointment404ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateAppointment404Response = {
+		'message': allowUndefined(stringFromJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+function modelApiCreateAppointment404ResponseToJsonContent(name: string, value: Api.CreateAppointment404Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateAppointment404Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointment404ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateAppointment404Response> = {
+		'message': allowUndefined(stringToJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointment404ResponseFromJson(name: string, value: any): Api.CreateAppointment404Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateAppointment404Response = modelApiCreateAppointment404ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointment404ResponseToJson(name: string, value: Api.CreateAppointment404Response): ToJson<Api.CreateAppointment404Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateAppointment404Response> = modelApiCreateAppointment404ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiCreateAppointment500ResponseKeys: string[] = ['message']
+
+function modelApiCreateAppointment500ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateAppointment500Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointment500ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateAppointment500Response = {
+		'message': allowUndefined(stringFromJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+function modelApiCreateAppointment500ResponseToJsonContent(name: string, value: Api.CreateAppointment500Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateAppointment500Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateAppointment500ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateAppointment500Response> = {
+		'message': allowUndefined(stringToJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointment500ResponseFromJson(name: string, value: any): Api.CreateAppointment500Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateAppointment500Response = modelApiCreateAppointment500ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment500Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateAppointment500ResponseToJson(name: string, value: Api.CreateAppointment500Response): ToJson<Api.CreateAppointment500Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateAppointment500Response> = modelApiCreateAppointment500ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateAppointment500Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiCreateDoctorKeys: string[] = ['name', 'email', 'password', 'address', 'mobile', 'specialization']
+
+function modelApiCreateDoctorFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateDoctor {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateDoctorKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateDoctor = {
+		'name': allowUndefined(stringFromJson)(`${name}.name`, value['name']),
+		'email': allowUndefined(stringFromJson)(`${name}.email`, value['email']),
+		'password': allowUndefined(stringFromJson)(`${name}.password`, value['password']),
+		'address': allowUndefined(stringFromJson)(`${name}.address`, value['address']),
+		'mobile': allowUndefined(stringFromJson)(`${name}.mobile`, value['mobile']),
+		'specialization': allowUndefined(stringFromJson)(`${name}.specialization`, value['specialization']),
+	}
+
+	return result
+}
+
+function modelApiCreateDoctorToJsonContent(name: string, value: Api.CreateDoctor, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateDoctor> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateDoctorKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateDoctor> = {
+		'name': allowUndefined(stringToJson)(`${name}.name`, value['name']),
+		'email': allowUndefined(stringToJson)(`${name}.email`, value['email']),
+		'password': allowUndefined(stringToJson)(`${name}.password`, value['password']),
+		'address': allowUndefined(stringToJson)(`${name}.address`, value['address']),
+		'mobile': allowUndefined(stringToJson)(`${name}.mobile`, value['mobile']),
+		'specialization': allowUndefined(stringToJson)(`${name}.specialization`, value['specialization']),
+	}
+
+	return result
+}
+
+export function modelApiCreateDoctorFromJson(name: string, value: any): Api.CreateDoctor {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateDoctor = modelApiCreateDoctorFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateDoctor: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateDoctorToJson(name: string, value: Api.CreateDoctor): ToJson<Api.CreateDoctor> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateDoctor> = modelApiCreateDoctorToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateDoctor: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiCreateDoctor201ResponseKeys: string[] = ['message']
+
+function modelApiCreateDoctor201ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateDoctor201Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateDoctor201ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateDoctor201Response = {
+		'message': allowUndefined(stringFromJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+function modelApiCreateDoctor201ResponseToJsonContent(name: string, value: Api.CreateDoctor201Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateDoctor201Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateDoctor201ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateDoctor201Response> = {
+		'message': allowUndefined(stringToJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+export function modelApiCreateDoctor201ResponseFromJson(name: string, value: any): Api.CreateDoctor201Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateDoctor201Response = modelApiCreateDoctor201ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateDoctor201Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateDoctor201ResponseToJson(name: string, value: Api.CreateDoctor201Response): ToJson<Api.CreateDoctor201Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateDoctor201Response> = modelApiCreateDoctor201ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateDoctor201Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiCreateDoctor404ResponseKeys: string[] = ['message']
+
+function modelApiCreateDoctor404ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateDoctor404Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateDoctor404ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.CreateDoctor404Response = {
+		'message': allowUndefined(stringFromJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+function modelApiCreateDoctor404ResponseToJsonContent(name: string, value: Api.CreateDoctor404Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.CreateDoctor404Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiCreateDoctor404ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.CreateDoctor404Response> = {
+		'message': allowUndefined(stringToJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+export function modelApiCreateDoctor404ResponseFromJson(name: string, value: any): Api.CreateDoctor404Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.CreateDoctor404Response = modelApiCreateDoctor404ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateDoctor404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiCreateDoctor404ResponseToJson(name: string, value: Api.CreateDoctor404Response): ToJson<Api.CreateDoctor404Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.CreateDoctor404Response> = modelApiCreateDoctor404ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.CreateDoctor404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
 const ApiCreateUserKeys: string[] = ['name', 'email', 'password', 'gender', 'mobile', 'address', 'age', 'medical_history']
 
 function modelApiCreateUserFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.CreateUser {
@@ -496,6 +946,262 @@ export function modelApiCreateUser404ResponseToJson(name: string, value: Api.Cre
 		if (!knownKeys[key]) {
 			// throw `Unexpected key: ${key}`
 			console.warn(`Unexpected key in Api.CreateUser404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiDoctorSign200ResponseKeys: string[] = ['id', 'email', 'name', 'mobile', 'specialization']
+
+function modelApiDoctorSign200ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.DoctorSign200Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSign200ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.DoctorSign200Response = {
+		'id': allowUndefined(stringFromJson)(`${name}.id`, value['id']),
+		'email': allowUndefined(stringFromJson)(`${name}.email`, value['email']),
+		'name': allowUndefined(stringFromJson)(`${name}.name`, value['name']),
+		'mobile': allowUndefined(stringFromJson)(`${name}.mobile`, value['mobile']),
+		'specialization': allowUndefined(stringFromJson)(`${name}.specialization`, value['specialization']),
+	}
+
+	return result
+}
+
+function modelApiDoctorSign200ResponseToJsonContent(name: string, value: Api.DoctorSign200Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.DoctorSign200Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSign200ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.DoctorSign200Response> = {
+		'id': allowUndefined(stringToJson)(`${name}.id`, value['id']),
+		'email': allowUndefined(stringToJson)(`${name}.email`, value['email']),
+		'name': allowUndefined(stringToJson)(`${name}.name`, value['name']),
+		'mobile': allowUndefined(stringToJson)(`${name}.mobile`, value['mobile']),
+		'specialization': allowUndefined(stringToJson)(`${name}.specialization`, value['specialization']),
+	}
+
+	return result
+}
+
+export function modelApiDoctorSign200ResponseFromJson(name: string, value: any): Api.DoctorSign200Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.DoctorSign200Response = modelApiDoctorSign200ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSign200Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiDoctorSign200ResponseToJson(name: string, value: Api.DoctorSign200Response): ToJson<Api.DoctorSign200Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.DoctorSign200Response> = modelApiDoctorSign200ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSign200Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiDoctorSign404ResponseKeys: string[] = ['message']
+
+function modelApiDoctorSign404ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.DoctorSign404Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSign404ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.DoctorSign404Response = {
+		'message': allowUndefined(stringFromJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+function modelApiDoctorSign404ResponseToJsonContent(name: string, value: Api.DoctorSign404Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.DoctorSign404Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSign404ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.DoctorSign404Response> = {
+		'message': allowUndefined(stringToJson)(`${name}.message`, value['message']),
+	}
+
+	return result
+}
+
+export function modelApiDoctorSign404ResponseFromJson(name: string, value: any): Api.DoctorSign404Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.DoctorSign404Response = modelApiDoctorSign404ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSign404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiDoctorSign404ResponseToJson(name: string, value: Api.DoctorSign404Response): ToJson<Api.DoctorSign404Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.DoctorSign404Response> = modelApiDoctorSign404ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSign404Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiDoctorSign500ResponseKeys: string[] = []
+
+function modelApiDoctorSign500ResponseFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.DoctorSign500Response {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSign500ResponseKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.DoctorSign500Response = {
+	}
+
+	return result
+}
+
+function modelApiDoctorSign500ResponseToJsonContent(name: string, value: Api.DoctorSign500Response, knownKeys: Record<string, boolean> = {}): ToJson<Api.DoctorSign500Response> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSign500ResponseKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.DoctorSign500Response> = {
+	}
+
+	return result
+}
+
+export function modelApiDoctorSign500ResponseFromJson(name: string, value: any): Api.DoctorSign500Response {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.DoctorSign500Response = modelApiDoctorSign500ResponseFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSign500Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiDoctorSign500ResponseToJson(name: string, value: Api.DoctorSign500Response): ToJson<Api.DoctorSign500Response> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.DoctorSign500Response> = modelApiDoctorSign500ResponseToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSign500Response: ${key}`)
+		}
+	}
+
+	return result
+}
+
+const ApiDoctorSignRequestKeys: string[] = ['email', 'password']
+
+function modelApiDoctorSignRequestFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.DoctorSignRequest {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSignRequestKeys.forEach(k => knownKeys[k] = true)
+
+	const result: Api.DoctorSignRequest = {
+		'email': allowUndefined(stringFromJson)(`${name}.email`, value['email']),
+		'password': allowUndefined(stringFromJson)(`${name}.password`, value['password']),
+	}
+
+	return result
+}
+
+function modelApiDoctorSignRequestToJsonContent(name: string, value: Api.DoctorSignRequest, knownKeys: Record<string, boolean> = {}): ToJson<Api.DoctorSignRequest> {
+	if (typeof value !== 'object' || value === undefined || value === null) {
+		throw `Invalid type for ${name}: expected object got ${typeof value}`
+	}
+
+	ApiDoctorSignRequestKeys.forEach(k => knownKeys[k] = true)
+	
+	const result: ToJson<Api.DoctorSignRequest> = {
+		'email': allowUndefined(stringToJson)(`${name}.email`, value['email']),
+		'password': allowUndefined(stringToJson)(`${name}.password`, value['password']),
+	}
+
+	return result
+}
+
+export function modelApiDoctorSignRequestFromJson(name: string, value: any): Api.DoctorSignRequest {
+	const knownKeys: Record<string, boolean> = {}
+	const result: Api.DoctorSignRequest = modelApiDoctorSignRequestFromJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSignRequest: ${key}`)
+		}
+	}
+
+	return result
+}
+
+export function modelApiDoctorSignRequestToJson(name: string, value: Api.DoctorSignRequest): ToJson<Api.DoctorSignRequest> {
+	const knownKeys: Record<string, boolean> = {}
+	const result: ToJson<Api.DoctorSignRequest> = modelApiDoctorSignRequestToJsonContent(name, value, knownKeys)
+
+	/* Known keys */
+	// TODO if we don't ignore unknown properties
+	for (const key of Object.keys(value)) {
+		if (!knownKeys[key]) {
+			// throw `Unexpected key: ${key}`
+			console.warn(`Unexpected key in Api.DoctorSignRequest: ${key}`)
 		}
 	}
 
