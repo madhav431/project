@@ -18,6 +18,7 @@ import { Api } from '../../models'
 export interface DoctorApi {
 	createDoctor: (request: Api.CreateDoctor | undefined) => Promise<CreateDoctorResponse>
 	doctorSign: (request: Api.DoctorSignRequest | undefined) => Promise<DoctorSignResponse>
+	getDoctor: (id: string | undefined) => Promise<GetDoctorResponse>
 }
 
 export type CreateDoctorResponse = CreateDoctor201Response | CreateDoctor404Response
@@ -51,6 +52,26 @@ export interface DoctorSign404Response {
 export interface DoctorSign500Response {
 	status: 500
 	body: Api.DoctorSign500Response
+	headers?: never
+}
+
+export type GetDoctorResponse = GetDoctor200Response | GetDoctor404Response | GetDoctor500Response
+
+export interface GetDoctor200Response {
+	status: 200
+	body: Api.GetDoctorData
+	headers?: never
+}
+
+export interface GetDoctor404Response {
+	status: 404
+	body: Api.GetDoctor404Response
+	headers?: never
+}
+
+export interface GetDoctor500Response {
+	status: 500
+	body: Api.GetDoctor500Response
 	headers?: never
 }
 

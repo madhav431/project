@@ -2,7 +2,11 @@ import {
   CreateDoctor404Response,
   CreateDoctor201Response,
   DoctorSignResponse,
-  DoctorSign200Response
+  DoctorSign200Response,
+  GetDoctorResponse,
+  GetDoctor404Response,
+  GetDoctor500Response,
+  GetDoctor200Response
 } from "./../../abstract/api/doctor/types"
 import {
   CreateDoctorResponse,
@@ -13,6 +17,51 @@ import { connection } from "../../dbConnection"
 import Utils from "../../utils/utils"
 
 class Doctor implements DoctorApi {
+  getDoctor(id: string | undefined) :Promise<GetDoctorResponse>{
+    return new Promise<GetDoctorResponse>(async (resolve, reject) => {
+      try{
+        let count:any=await Utils._check_doctor_exists_id(id)
+        console.log("count",count);
+        
+        if(count[0]["count(*)"]==0){
+          let res=<GetDoctor404Response>{
+            status:404,
+            body:{
+              message:"Doctor not found"
+            }
+          }
+          return resolve(res)
+        }
+        let sql =`SELECT * FROM hms_doctor WHERE id=${id}`
+        connection.query(sql,(err,result:any)=>{
+          if(err){
+            console.error(err)
+            return reject(err)
+          }
+          let res=<GetDoctor200Response>{
+            status:200,
+            body:{
+              id:result[0].id,
+              email:result[0].email,
+              name:result[0].name,
+              mobile:result[0].mobile,
+              specialization:result[0].specialization,
+            }
+          }
+          return resolve(res)
+        })
+      }catch(err){
+        console.log(err)
+        let res=<GetDoctor500Response><unknown>{
+          status: 404,
+          body: {
+            message: "Doctor not found"
+          }
+        }
+        return resolve(res)
+      }
+    })
+  }
   doctorSign(
     request: Api.DoctorSignRequest | undefined
   ): Promise<DoctorSignResponse> {

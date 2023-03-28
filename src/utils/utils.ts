@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import { connection } from "../dbConnection"
 class Utils {
   static saltRounds = 10
@@ -55,7 +55,10 @@ class Utils {
       })
     })
   }
-  static async verifyDoctorPassword(email: string | any, userPassword: string | any) {
+  static async verifyDoctorPassword(
+    email: string | any,
+    userPassword: string | any
+  ) {
     return new Promise((resolve, reject) => {
       let sql = `SELECT password FROM hms_doctor WHERE email='${email}'`
       connection.query(sql, (err, result: any) => {
@@ -71,10 +74,26 @@ class Utils {
 
   static async get_user_with_id(id: string | any) {
     return new Promise((resolve, reject) => {
-      let sql = `SELECT count(*) FROM hms_patients WHERE id='${id}'`
+      let sql = `SELECT count(*) FROM hms_patients WHERE id=${id}`
       connection.query(sql, (err, result) => {
+        console.log(result)
+
+        console.log("err", err)
+
         if (err) throw err
         resolve(result)
+      })
+    })
+  }
+
+  static async _check_doctor_exists_id(id: string | undefined) {
+    return new Promise((resolve, reject) => {
+      let sql = `SELECT count(*) FROM hms_doctor WHERE id=${id}`
+      connection.query(sql, (err, result: any) => {
+        console.log(result);
+        
+        if (err) throw err
+        return resolve(result)
       })
     })
   }
@@ -96,17 +115,24 @@ class Utils {
     })
   }
 
-  static async _check_appointment_exists_for_doctor(doctorId: any,appointment_date:any,appointment_time:any){
+  static async _check_appointment_exists_for_doctor(
+    doctorId: any,
+    appointment_date: any,
+    appointment_time: any
+  ) {
     let sql = `SELECT * from hms_appointments where id="${doctorId}"`
-    let data: any[] =[]
-    connection.query(sql, (err, rows:any) => {
+    let data: any[] = []
+    connection.query(sql, (err, rows: any) => {
       if (err) throw err
       data.push(...rows)
     })
-    console.log(data);
-    
-    data.filter((item:any)=>{
-      return item.appointment_date===appointment_date && item.appointment_time===appointment_time
+    console.log(data)
+
+    data.filter((item: any) => {
+      return (
+        item.appointment_date === appointment_date &&
+        item.appointment_time === appointment_time
+      )
     })
     return data
   }

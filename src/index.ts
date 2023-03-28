@@ -8,6 +8,7 @@ import bodyParser from "body-parser"
 import userService from "./abstract/index"
 dotenv.config({ path: path.resolve(__dirname, "../server.env") })
 const swaggerDocument = YAML.load(path.resolve(__dirname, "../openapi.yaml"))
+
 let impl = new apiImpl()
 var options = {
   swaggerOptions: {
@@ -25,7 +26,7 @@ app.use(
 )
 userService(app, impl)
 const PORT = process.env.PORT || 8000
-
 app.listen(PORT, () => {
   console.log(`App is listing on port ${PORT}`)
 })
+

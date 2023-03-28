@@ -16,8 +16,8 @@ import { connection } from "../../dbConnection"
 class User implements UserApi {
   getProfile(id: string | undefined): Promise<GetProfileResponse> {
     return new Promise<GetProfileResponse>(async (resolve, reject) => {
-      let result: any = await Utils.get_user_with_id(id)
-      if (result[0]["COUNT(*)"] < 0) {
+      let result1: any = await Utils.get_user_with_id(id)
+      if (result1[0]["COUNT(*)"] < 0) {
         let res = <GetProfile404Response>{
           status: 404,
           body: {
@@ -26,12 +26,14 @@ class User implements UserApi {
         }
         return resolve(res)
       }
-      let sql = `select * from hms_patients where id='${id}'`
+      let sql = `SELECT * FROM hms_patients WHERE id=${id}`
       connection.query(sql, (err, result: any) => {
         if (err) {
           console.error(err)
           return reject(err)
         }
+        console.log(result);
+        
         let res = <GetProfile200Response>{
           status: 200,
           body: {

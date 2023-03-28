@@ -18,6 +18,14 @@ POST /doctor/signin
 
 For patient signin
 
+### getDoctor
+
+```http
+GET /users/getdata
+```
+
+To get doctor
+
 ## Implementation
 
 This is an example of the API implementation to use to update the actual API implementation
@@ -32,10 +40,15 @@ async function doctorSign(request: Api.DoctorSignRequest | undefined): Promise<t
 	throw 'Unimplemented'
 }
 
+async function getDoctor(id: string | undefined): Promise<t.GetDoctorResponse> {
+	throw 'Unimplemented'
+}
+
 
 const api: t.DoctorApi = {
 	createDoctor,
 	doctorSign,
+	getDoctor,
 }
 
 export default api

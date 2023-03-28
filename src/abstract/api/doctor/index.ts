@@ -160,4 +160,71 @@ export default function(app: Express, impl: t.DoctorApi) {
 		}
 	)
 
+	app.get(
+		'/users/getdata',
+		function (req, res) {
+			try {
+				impl.getDoctor(v.allowUndefined(v.parseString)('query.id', req.query['id'])).then(function (response) {
+					if (response.status === 200) {
+						let body: any
+						try {
+							body = v.modelApiGetDoctorDataToJson('response', response.body)
+						} catch (error) {
+							console.error('Invalid response body in doctor.getDoctor', error)
+							res.status(500)
+							res.send()
+							return
+						}
+
+						res.status(200)
+						res.send(body)
+						return
+					}
+					if (response.status === 404) {
+						let body: any
+						try {
+							body = v.modelApiGetDoctor404ResponseToJson('response', response.body)
+						} catch (error) {
+							console.error('Invalid response body in doctor.getDoctor', error)
+							res.status(500)
+							res.send()
+							return
+						}
+
+						res.status(404)
+						res.send(body)
+						return
+					}
+					if (response.status === 500) {
+						let body: any
+						try {
+							body = v.modelApiGetDoctor500ResponseToJson('response', response.body)
+						} catch (error) {
+							console.error('Invalid response body in doctor.getDoctor', error)
+							res.status(500)
+							res.send()
+							return
+						}
+
+						res.status(500)
+						res.send(body)
+						return
+					}
+
+					console.log('Unsupported response in doctor.getDoctor', response)
+					res.status(500)
+					res.send()
+				}).catch(function (error) {
+					console.error('Unexpected error in doctor.getDoctor', error.stack || error)
+					res.status(500)
+					res.send()
+				})
+			} catch (error) {
+				/* Catch validation errors */
+				res.status(400)
+				res.send(error)
+			}
+		}
+	)
+
 }

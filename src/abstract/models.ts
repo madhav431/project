@@ -92,6 +92,23 @@ export namespace Api {
 		password?: string;
 	}
 
+	export interface GetDoctor404Response {
+		message?: string;
+	}
+
+	export interface GetDoctor500Response {
+		message?: string;
+	}
+
+	export interface GetDoctorData {
+		id?: string;
+		name?: string;
+		email?: string;
+		mobile?: string;
+		address?: string;
+		specialization?: string;
+	}
+
 	export interface GetProfile200Response {
 		name?: string;
 		email?: string;
