@@ -17,15 +17,14 @@ class Appointments implements AppointmentsApi {
         let createdAt = new Date().toLocaleDateString()
         let id = Math.random().toString(20).substring(2, 20).toUpperCase()
         let values = {
-            id,
+          id,
           doctor_id: request?.doctor_id,
           patient_id: request?.patient_id,
           appointment_date: request?.appointment_date,
           appointment_time: request?.appointment_time,
           created: createdAt.split("/").reverse().join("-"),
-          status:"Active",
-          fee:"500",
-
+          status: "Active",
+          fee: "500",
         }
         let sql = `INSERT INTO hms_appointments SET ?`
         connection.query(sql, values, (err, result) => {

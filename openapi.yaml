@@ -4,7 +4,7 @@ info:
   title: Hospital Management Service
   version: "1.0.0"
 servers:
-  - url: http://localhost:8000/
+  - url: https://hms-3m25jovmiq-uc.a.run.app/
 
 paths:
   /users/patient:
@@ -37,6 +37,7 @@ paths:
                 properties:
                   message:
                     type: string
+              
 
   /users/patient_signin:
     post:
@@ -130,6 +131,8 @@ paths:
                 properties:
                   message: 
                     type: string
+          
+  
 
   /user/update_patient:
       put:
@@ -161,6 +164,170 @@ paths:
                   properties:
                     message:
                       type: string
+  
+  /doctor:
+      post:
+        tags:
+          - doctor
+        description: Create doctor
+        operationId: CreateDoctor
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/schemas/CreateDoctor"
+        responses:
+          "201":  
+            description: Doctor Created successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message: 
+                      type: string
+          "404":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message: 
+                      type: string
+  /doctor/signin:
+      post:
+        tags:
+          - doctor
+        description: For patient signin
+        operationId: DoctorSign
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email: 
+                    type: string
+                  password: 
+                    type: string
+        responses:
+          "200":
+            description: "Successfully signin"
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties: 
+                    id:
+                      type: string
+                    email:
+                      type: string
+                    name: 
+                      type: string
+                    mobile:   
+                      type: string
+                    specialization:
+                      type: string
+          "404":
+            description: Bad request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+          "500":
+            description: Internal server error
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                  message:
+                    type: string      
+
+  /users/getdata:
+    get:
+      tags:
+        - doctor
+      description: To get doctor
+      operationId: GetDoctor
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully data retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/schemas/GetDoctorData"
+        "404":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+
+
+  /appointment:
+      post:
+        tags:
+          - appointments
+        description: Schedule appointment
+        operationId: CreateAppointment
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/schemas/CreateAppointment'
+        responses:
+        
+          "201":  
+            description: Successfully Appointment Created
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+
+          "404":
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+
+          "500":
+            description: Internal server error
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
       
 schemas:
   CreateUser:
@@ -181,4 +348,49 @@ schemas:
       age:
         type: number
       medical_history:
+        type: string
+
+  CreateDoctor:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      address:
+        type: string
+      mobile:
+        type: string
+      specialization:
+        type: string
+
+  CreateAppointment:
+    type: object
+    properties:
+      patient_id:
+        type: string
+      doctor_id:
+        type: string
+      appointment_date:
+        type: string
+      appointment_time:
+        type: string
+
+  GetDoctorData:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      mobile:
+        type: string
+      address:
+        type: string
+
+      specialization:
         type: string
