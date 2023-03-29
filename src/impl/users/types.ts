@@ -39,7 +39,7 @@ class Users implements UsersApi {
         let token = Utils.generateToken(id,"HMS")
         let hashedPassword = await Utils.hashPassword(request?.password)
         console.log("hashedPassword-😅",hashedPassword);
-        
+        let createdAt = new Date().toLocaleDateString()
         let values = { 
           id,
           name: request?.name,
@@ -51,8 +51,7 @@ class Users implements UsersApi {
           age: request?.age,
           token:token,
           medical_history: request?.medical_history,
-          createdAt: new Date()
-            .toLocaleDateString()
+          createdAt: createdAt
             .split("/")
             .reverse()
             .join("-"),
