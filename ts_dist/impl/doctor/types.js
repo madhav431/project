@@ -152,7 +152,6 @@ class Doctor {
                     };
                     return resolve(res);
                 });
-                dbConnection_1.connection.end();
             }
             catch (err) {
                 console.log(err);

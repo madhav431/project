@@ -162,7 +162,6 @@ class Doctor implements DoctorApi {
           return resolve(res)
         })
 
-        connection.end()
       } catch (err) {
         console.log(err)
         let res = <CreateDoctor404Response>{

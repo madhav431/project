@@ -38,7 +38,6 @@ class Appointments implements AppointmentsApi {
           }
           return resolve(res)
         })
-        connection.end()
       } catch (err) {
         console.error(err)
         let res = <CreateAppointment404Response>{

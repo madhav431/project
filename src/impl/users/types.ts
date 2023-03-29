@@ -68,7 +68,6 @@ class Users implements UsersApi {
           }
           return resolve(res)
         })
-        connection.end()
       } catch (err) {
         let res = <CreateUser404Response>{
           status: 404,

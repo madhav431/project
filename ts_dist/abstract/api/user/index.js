@@ -39,7 +39,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const v = __importStar(require("../../validation"));
 function default_1(app, impl) {
     app.get('/user/patient_profile', function (req, res) {
-        req.setTimeout(500000);
         try {
             impl.getProfile(v.allowUndefined(v.parseString)('query.id', req.query['id'])).then(function (response) {
                 if (response.status === 200) {
