@@ -72,7 +72,6 @@ class Users {
                     };
                     return resolve(res);
                 });
-                dbConnection_1.connection.end();
             }
             catch (err) {
                 let res = {

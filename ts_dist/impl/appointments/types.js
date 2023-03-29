@@ -38,7 +38,6 @@ class Appointments {
                     };
                     return resolve(res);
                 });
-                dbConnection_1.connection.end();
             }
             catch (err) {
                 console.error(err);

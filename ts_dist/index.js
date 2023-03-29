@@ -26,8 +26,6 @@ app.get("/api-docs/swagger.json", (req, res) => res.json(swaggerDocument));
 app.use("/api-docs", swagger_ui_express_1.default.serveFiles(undefined, options), swagger_ui_express_1.default.setup(undefined, options));
 (0, index_1.default)(app, impl);
 const PORT = process.env.PORT || 8000;
-const DEFAULT_TIMEOUT = 500000;
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`App is listing on port ${PORT}`);
 });
-server.setTimeout(DEFAULT_TIMEOUT);

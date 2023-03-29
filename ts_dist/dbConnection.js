@@ -15,6 +15,6 @@ let connection = mysql2_1.default.createConnection({
 exports.connection = connection;
 connection.connect((err) => {
     if (err)
-        console.log("Error in connecting to database");
+        console.log("Error in connecting to database", err);
     console.log("Database connected successfully");
 });
