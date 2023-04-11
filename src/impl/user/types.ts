@@ -9,14 +9,27 @@ import {
   UpdatepatientResponse,
   UserApi,
 } from "../../abstract/api/user/types"
+import mysql from "mysql2"
 import { Api } from "../../abstract/models"
 import Utils from "../../utils/utils"
 import { connection } from "../../dbConnection"
 
 class User implements UserApi {
   getProfile(id: string | undefined): Promise<GetProfileResponse> {
+    let splittedId=id?.split(" ")
+    console.log("splittedId",splittedId);
+    
     return new Promise<GetProfileResponse>(async (resolve, reject) => {
       let result1: any = await Utils.get_user_with_id(id)
+      if(id?.split(" ")[1].includes("or")){
+        let res=<GetProfile404Response>{
+          status:404,
+          body:{
+            message:"Please input the correct query some malicious content exists"
+          }
+        }
+        return resolve(res)
+      }
       if (result1[0]["COUNT(*)"] < 0) {
         let res = <GetProfile404Response>{
           status: 404,
@@ -26,12 +39,14 @@ class User implements UserApi {
         }
         return resolve(res)
       }
-      let sql = `SELECT * FROM hms_patients WHERE id=${id}`
-      connection.query(sql, (err, result: any) => {
+      let sql = `SELECT * FROM hms_patients WHERE id=${splittedId}`
+      
+      connection.query(sql,(err, result: any) => {
         if (err) {
           console.error(err)
           return reject(err)
         }
+
         console.log(result);
         
         let res = <GetProfile200Response>{

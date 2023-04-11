@@ -49,7 +49,7 @@ class Utils {
         if (err) return console.error(err)
         return bcrypt
           .compare(userPassword, result[0].password)
-          .then((result) => {
+          .then((result:any) => {
             resolve(result)
           })
       })
@@ -65,7 +65,7 @@ class Utils {
         if (err) return console.error(err)
         return bcrypt
           .compare(userPassword, result[0].password)
-          .then((result) => {
+          .then((result:any) => {
             resolve(result)
           })
       })
