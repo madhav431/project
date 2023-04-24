@@ -21,6 +21,9 @@ class User implements UserApi {
     
     return new Promise<GetProfileResponse>(async (resolve, reject) => {
       let result1: any = await Utils.get_user_with_id(id)
+
+      console.log(id);
+      
       if(id?.split(" ")[1].includes("or")){
         let res=<GetProfile404Response>{
           status:404,
@@ -30,6 +33,7 @@ class User implements UserApi {
         }
         return resolve(res)
       }
+
       if (result1[0]["COUNT(*)"] < 0) {
         let res = <GetProfile404Response>{
           status: 404,
