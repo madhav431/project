@@ -43,6 +43,7 @@ class Users {
                 let token = utils_1.default.generateToken(id, "HMS");
                 let hashedPassword = yield utils_1.default.hashPassword(request === null || request === void 0 ? void 0 : request.password);
                 console.log("hashedPassword-😅", hashedPassword);
+                let createdAt = new Date().toLocaleDateString();
                 let values = {
                     id,
                     name: request === null || request === void 0 ? void 0 : request.name,
@@ -54,8 +55,7 @@ class Users {
                     age: request === null || request === void 0 ? void 0 : request.age,
                     token: token,
                     medical_history: request === null || request === void 0 ? void 0 : request.medical_history,
-                    createdAt: new Date()
-                        .toLocaleDateString()
+                    createdAt: createdAt
                         .split("/")
                         .reverse()
                         .join("-"),

@@ -18,6 +18,7 @@ class User {
     getProfile(id) {
         return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
             let result1 = yield utils_1.default.get_user_with_id(id);
+            console.log(id);
             if (result1[0]["COUNT(*)"] < 0) {
                 let res = {
                     status: 404,

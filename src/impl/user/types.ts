@@ -17,6 +17,8 @@ class User implements UserApi {
   getProfile(id: string | undefined): Promise<GetProfileResponse> {
     return new Promise<GetProfileResponse>(async (resolve, reject) => {
       let result1: any = await Utils.get_user_with_id(id)
+      console.log(id);
+      
       if (result1[0]["COUNT(*)"] < 0) {
         let res = <GetProfile404Response>{
           status: 404,
