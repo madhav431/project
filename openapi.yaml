@@ -4,7 +4,7 @@ info:
   title: Hospital Management Service
   version: "1.0.0"
 servers:
-  - url: https://hms-3m25jovmiq-uc.a.run.app/
+  - url: http://34.71.40.102:8000
 
 paths:
   /users/patient:
