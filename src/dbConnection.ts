@@ -12,6 +12,7 @@ const connection = mysql.createPool({
 connection.getConnection((err, connection) => {
   if (err) {
     console.log(err)
+    return
   } else {
     console.log("Connected to database")
     connection.release()
